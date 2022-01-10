@@ -1,3 +1,8 @@
+/***************************************/
+//Coded by:Harkirat//Purpose: Project 30//
+/***************************************/
+
+//variables:
 const Engine = Matter.Engine;
 const Render = Matter.Render;
 const World = Matter.World;
@@ -20,7 +25,9 @@ var backgroundImage;
 
 var stones = [];
 
+//preload function:
 function preload() {
+  //loading all the images:
   zombie1 = loadImage("./assets/zombie1.png");
   zombie2 = loadImage("./assets/zombie2.png");
 
@@ -30,12 +37,13 @@ function preload() {
   backgroundImage = loadImage("./assets/background.png");
 }
 
+//setup funcation:
 function setup() {
   createCanvas(windowWidth, windowHeight);
   engine = Engine.create();
   world = engine.world;
   frameRate(80);
-
+  //creating walls:
   ground = new Base(0, height - 10, width * 2, 20);
   leftWall = new Base(100, height - 300, 200, height / 2 + 100);
   rightWall = new Base(width - 100, height - 300, 200, height / 2 + 100);
@@ -52,25 +60,23 @@ function setup() {
     var stone = new Stone(x, y, 80, 80);
     stones.push(stone);
   }
-
+  //creating zombie sprite:
   zombie = createSprite(width / 2, height - 110);
   zombie.addAnimation("lefttoright", zombie1, zombie2, zombie1);
   zombie.addAnimation("righttoleft", zombie3, zombie4, zombie3);
   zombie.scale = 0.1;
   zombie.velocityX = 10;
-
+  //creating button:
   breakButton = createButton("");
   breakButton.position(width - 200, height / 2 - 50);
   breakButton.class("breakbutton");
 
   breakButton.mouseClicked(handleButtonPress);
-  //breakButton.mousePressed(handleButtonPress);
-  //breakButton.mouse(handleButtonPress);
-//breakButton.mousePressed(ButtonPress);
 
 
 }
 
+//draw function:
 function draw() {
   background(backgroundImage);
   Engine.update(engine);
@@ -95,21 +101,6 @@ function draw() {
 }
 
 function handleButtonPress() {
-  /* jointLink=dettach();
-  setTimeout(() => {
-    bridge.break();
-  }, 1500); */
-
-  /* jointLink.dettach();
-  setTimeout(() => {
-    break();
-  }, 1500); */
-
-  /* jointLink.dettach();
-  setTimeout(() => {
-    bridge.break();
-  }, 5); */
-
    jointLink.dettach();
   setTimeout(() => {
     bridge.break();
